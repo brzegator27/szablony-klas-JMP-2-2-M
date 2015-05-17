@@ -51,6 +51,17 @@ int main()
 		cout << "\n";
 	}
 
+	aghMatrix<char> proba1(1, 1);
+	proba1(0, 0) = 'a';
+
+	aghMatrix<char> proba2(1, 1);
+	proba2(0, 0) = 'b';
+
+	proba2 = proba1 * proba2;
+
+	cout << endl << proba2(0, 0);
+
+
 	getchar();
 	return 0;
 }
