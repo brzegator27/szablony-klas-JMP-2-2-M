@@ -75,6 +75,15 @@ public:
 	///
 	/// \param other - other complex number
 	bool operator!= (const aghComplex& other);
+
+	/// \brief overloaded operator for output stream from sdt library
+	///
+	/// \param out - output stream
+	/// \param number - complex number
+	friend ostream& operator<<(ostream& out, const aghComplex& number)
+	{
+		return out;
+	}
 };
 
 // -------------------------------------------------------------------------

@@ -110,10 +110,24 @@ public:
 	/// \param m - number of row
 	/// \param n - number of column
 	T getItem(int m, int n);
+
+	inline void write()
+	{
+		cout << endl;
+
+		for (int i = 0; i < this->m; i++)
+		{
+			for (int j = 0; j < this->n; j++)
+				cout << getItem(i, j) << "  ";
+
+			cout << "\n";
+		}
+	}
 };
 
 // -------------------------------------------------------------------------
 #endif
+
 
 
 
