@@ -8,6 +8,7 @@
 // -------------------------------------------------------------------------
 
 #include "aghException.h"
+#include "aghComplex.h"
 #include <stdarg.h>	/// Library essentinal for funtion with unknown number of parameters
 
 #ifndef AGH_MATRIX
@@ -41,14 +42,14 @@ public:
 
 	/// \brief two-parameter constructor
 	///
-	/// \param matrix - matrix, which is a model during creation 'this' matrix
-	aghMatrix(const aghMatrix& matrix);
-
-	/// \brief copy constructor
-	///
 	/// \param m - number of rows
 	/// \param n - number of columns
 	aghMatrix(int m, int n);
+
+	/// \brief copy constructor
+	///
+	/// \param matrix - matrix, which is a model during creation 'this' matrix
+	aghMatrix(const aghMatrix& matrix);
 
 	/// \brief default destructor
 	~aghMatrix();

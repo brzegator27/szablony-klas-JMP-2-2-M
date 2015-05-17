@@ -17,7 +17,8 @@ using namespace std;
 template class aghMatrix<int>;	/** Written in order to have templates of class' functions in .cpp file
 								*	More on: https://isocpp.org/wiki/faq/templates#separate-template-class-defn-from-decl
 								*/
-				
+
+template class aghMatrix<aghComplex>;
 
 template <class T>
 void aghMatrix<T>::allocateMem(int m, int n)

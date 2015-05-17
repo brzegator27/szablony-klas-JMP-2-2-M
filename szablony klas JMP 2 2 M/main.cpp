@@ -1,5 +1,6 @@
 #include <iostream>
 #include "aghMatrix.h"
+#include "aghComplex.h"
 
 #include "aghException.h"
 
@@ -60,6 +61,13 @@ int main()
 	proba2 = proba1 * proba2;
 
 	cout << endl << proba2(0, 0);
+
+	aghMatrix<aghComplex> complexM_1(1,1);
+
+	aghComplex c1(1, 1);
+	aghComplex c2(0, 0);
+
+	complexM_1.setItem(0, 0, c1);
 
 
 	getchar();
