@@ -66,7 +66,7 @@ aghMatrix<T>::aghMatrix(int m, int n)
 }
 
 template <class T>
-aghMatrix<T>::aghMatrix(const aghMatrix &matrix)
+aghMatrix<T>::aghMatrix(const aghMatrix& matrix)
 {
 	deallocateMem();	/// Deallocation of memory 
 
@@ -81,6 +81,84 @@ template <class T>
 aghMatrix<T>::~aghMatrix()
 {
 	deallocateMem();	/// Aeallocation of memory from matrix
+}
+
+template <class T>
+aghMatrix<T>& aghMatrix<T>::operator= (const aghMatrix<T>& other)
+{
+	if (this != &other)	/// In case where the same object would be assigned to itself
+	{
+		deallocateMem();	/// Deallocation of memory 
+
+		allocateMem(other.m, other.n);	/// We allocate as much of new memory, as is in passed 'matrix'
+
+		for (int i = 0; i < this->m; i++)
+			for (int j = 0; j < this->n; j++)
+				this->pointer[i][j] = other.pointer[i][j];	/// Copying values from 'matrix' to our object
+	}
+
+	return *this;	/// Returning pointer to 'this' object
+}
+
+template <class T>
+aghMatrix<T> aghMatrix<T>::operator+ (const aghMatrix<T>& other)
+{
+	if (this->m != other.m || this->n != other.n)
+		throw aghException(0, "You can't add two matrices which have different dimensions.", __FILE__, __LINE__);	/// Checking if we can add this two matrices
+
+	aghMatrix<T> newMatrix(this->m, this->n);	/// Creation of new object with dimensions like two other matrices
+
+	for (int i = 0; i < this->m; i++)
+		for (int j = 0; j < this->n; j++)
+			newMatrix.pointer[i][j] = this->pointer[i][j] + other.pointer[i][j];	/// Setting values of elements from 'newMatrix' by adding corresponding elements
+
+	return newMatrix;	/// Returning created 'newMatrix'
+}
+
+template <class T>
+aghMatrix<T> aghMatrix<T>::operator* (const aghMatrix<T>& other)
+{
+	if (this->n != other.m)
+		throw aghException(0, "You can't add two matrices which have different dimensions.", __FILE__, __LINE__);	/// Checking if we can multiply this two matrices
+
+	aghMatrix<T> newMatrix(this->m, other.n);	/// Creation of new object with proper dimensions
+
+	for (int i = 0; i < this->m; i++)	/// Setting right row
+		for (int j = 0; j < other.n; j++)	/// Setting right column
+			for (int k = 0; k < this->n; k++)	/// We multiply k elements, so...
+				newMatrix.pointer[i][j] += this->pointer[i][k] * other.pointer[k][j];	/// Setting values of elements from 'newMatrix' by adding multiplication of corresponding elements
+
+	return newMatrix;	/// Returning created 'newMatrix'
+}
+
+template <class T>
+bool aghMatrix<T>::operator== (const aghMatrix& other)
+{
+	if (this->m != other.m || this->n != other.n) return false;	/// Matrices should have the same dimensions
+
+	for (int i = 0; i < this->m; i++)
+		for (int j = 0; j < this->n; j++)
+			if (this->pointer[i][j] != other.pointer[i][j]) return false;	/// Matrices should have the same values of corresponding elements
+
+	return true;	/// If both above conditions are fulfiled returned value is 'true'
+}
+
+template <class T>
+bool aghMatrix<T>::operator!= (const aghMatrix& other)
+{
+	if (this->m != other.m || this->n != other.n) return true;	/// Matrices might have the other dimensions
+
+	for (int i = 0; i < this->m; i++)
+		for (int j = 0; j < this->n; j++)
+			if (this->pointer[i][j] != other.pointer[i][j]) return true;	/// Matrices might have other values of corresponding elements
+
+	return false;	/// If none of above conditions are fulfiled returned value is 'false'
+}
+
+template <class T>
+T& aghMatrix<T>::operator() (int m, int n)
+{
+	return (this->pointer[m][n]);	/// Returning reference to particular element
 }
 
 template <class T>

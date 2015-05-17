@@ -42,7 +42,7 @@ public:
 	/// \brief two-parameter constructor
 	///
 	/// \param matrix - matrix, which is a model during creation 'this' matrix
-	aghMatrix(const aghMatrix &matrix);
+	aghMatrix(const aghMatrix& matrix);
 
 	/// \brief copy constructor
 	///
@@ -52,6 +52,37 @@ public:
 
 	/// \brief default destructor
 	~aghMatrix();
+
+	/// \brief overloaded assignment operator 
+	///
+	/// \param other - other matrix
+	aghMatrix<T>& operator= (const aghMatrix<T>& other);
+
+	/// \brief overloaded addition operator 
+	///
+	/// \param other - other matrix
+	aghMatrix<T> operator+ (const aghMatrix<T>& other);
+
+	/// \brief overloaded multiplication operator 
+	///
+	/// \param other - other matrix
+	aghMatrix<T> operator* (const aghMatrix<T>& other);
+
+	/// \brief overloaded equality == operator 
+	///
+	/// \param other - other matrix
+	bool operator== (const aghMatrix<T>& other);
+
+	/// \brief overloaded unequality != operator 
+	///
+	/// \param other - other matrix
+	bool operator!= (const aghMatrix<T>& other);
+
+	/// \brief overloaded function call () operator 
+	///
+	/// \param m - number of row
+	/// \param n - number of column
+	T& operator() (int m, int n);
 
 	/// \brief function setting value of element of matrix
 	///

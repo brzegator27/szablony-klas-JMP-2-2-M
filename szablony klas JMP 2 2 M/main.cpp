@@ -23,6 +23,24 @@ int main()
 		cout << "\n";
 	}
 
+	cout << endl;
+
+	aghMatrix<int> macierz2 = macierz;
+
+	macierz2 = macierz2;
+
+	macierz2(0, 0) = 123;
+
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+			cout << macierz2.getItem(i, j) << "  ";
+
+		cout << "\n";
+	}
+
+	cout << endl;
+
 	macierz.setItems(2, 1, 91, 92);// , 93, 94);
 
 	for (int i = 0; i < 3; i++)
