@@ -38,19 +38,23 @@ void aghMatrix<T>::allocateMem(int m, int n)
 template <class T>
 void aghMatrix<T>::deallocateMem()
 {
-	for (int i = 1; i < this->m; i++)
-		delete[] this->pointer[i];	/// We deallocate memory of tables in which are values from rows
+	if (this->m > 0 || this->n > 0)		/// Checking wheather we have something to delete or not
+	{
 
-	delete[] this->pointer;		/// Deletion of table with pointers to tables with rows' values
+		for (int i = 1; i < this->m; i++)
+			delete[] this->pointer[i];	/// We deallocate memory of tables in which are values from rows
 
-	this->m = 0;	/// Setting number of rows in object's matrix to 0 because now we don't have any
-	this->n = 0;	/// Setting number of columns in object's matrix to 0 because now we don't have any
+		delete[] this->pointer;		/// Deletion of table with pointers to tables with rows' values
+
+		this->m = 0;	/// Setting number of rows in object's matrix to 0 because now we don't have any
+		this->n = 0;	/// Setting number of columns in object's matrix to 0 because now we don't have any
+	}
 }
 	
 template <class T>
 aghMatrix<T>::aghMatrix()
 {
-	this->pointer = nullptr;	/// Setting pointer to nullptr because there is no matrix 
+	this->pointer = NULL;	/// Setting pointer to NULL because there is no matrix 
 	this->m = 0;	/// Setting number of rows in object's matrix to 0 because now we don't have any
 	this->n = 0;	/// Setting number of columns in object's matrix to 0 because now we don't have any
 }
@@ -59,6 +63,18 @@ template <class T>
 aghMatrix<T>::aghMatrix(int m, int n)
 {
 	allocateMem(m, n);	/// Allocatioin of memory for matrix
+}
+
+template <class T>
+aghMatrix<T>::aghMatrix(const aghMatrix &matrix)
+{
+	deallocateMem();	/// Deallocation of memory 
+
+	allocateMem(matrix.m, matrix.n);	/// We allocate as much of new memory, as is in passed 'matrix'
+
+	for (int i = 0; i < this->m; i++)
+		for (int j = 0; j < this->n; j++)
+			this->pointer[i][j] = matrix.pointer[i][j];	/// Copying values from 'matrix' to our object
 }
 
 template <class T>

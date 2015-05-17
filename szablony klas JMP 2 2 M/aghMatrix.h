@@ -38,7 +38,13 @@ class aghMatrix
 public:
 	/// \brief default constructor
 	aghMatrix();
+
 	/// \brief two-parameter constructor
+	///
+	/// \param matrix - matrix, which is a model during creation 'this' matrix
+	aghMatrix(const aghMatrix &matrix);
+
+	/// \brief copy constructor
 	///
 	/// \param m - number of rows
 	/// \param n - number of columns
