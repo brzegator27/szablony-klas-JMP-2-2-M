@@ -24,12 +24,18 @@
     <ClCompile Include="aghMatrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="aghComplex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aghException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="aghMatrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aghComplex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

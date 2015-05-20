@@ -78,11 +78,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aghComplex.cpp" />
     <ClCompile Include="aghException.cpp" />
     <ClCompile Include="aghMatrix.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aghComplex.h" />
     <ClInclude Include="aghException.h" />
     <ClInclude Include="aghMatrix.h" />
   </ItemGroup>
